@@ -1,10 +1,10 @@
 const CACHE_NAME = 'lectures-app-v1';
 const urlsToCache = [
-  './',
-  './app.html',
-  './manifest.json',
-  './eng.png',
-  'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap'
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./eng.png",
+  "https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap",
 ];
 
 self.addEventListener('install', event => {

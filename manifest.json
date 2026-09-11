@@ -2,7 +2,7 @@
   "name": "ب/أسلام رمزي ",
   "short_name": "برمجه",
   "description": " جدول المحاضرات",
-  "start_url": "./app.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",

@@ -100,6 +100,38 @@
         display: none;
       }
 
+      .filter-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        font-family: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+      }
+
+      .filter-btn.active {
+        background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+        border-color: #00d2ff;
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+      }
+
+      .filter-btn:hover {
+        border-color: #00d2ff;
+        transform: translateY(-2px);
+      }
+
       .form-group {
         display: flex;
         gap: 10px;
@@ -107,7 +139,8 @@
         flex-wrap: wrap;
       }
 
-      .form-group input {
+      .form-group input,
+      .form-group select {
         flex: 1;
         min-width: 120px;
         padding: 12px 15px;
@@ -121,14 +154,21 @@
         transition: all 0.3s ease;
       }
 
-      .form-group input::placeholder {
+      .form-group input::placeholder,
+      .form-group select {
         color: rgba(255, 255, 255, 0.6);
       }
 
-      .form-group input:focus {
+      .form-group input:focus,
+      .form-group select:focus {
         background: rgba(255, 255, 255, 0.2);
         border-color: #00d2ff;
         box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+      }
+
+      .form-group option {
+        background: #1a1a1a;
+        color: #fff;
       }
 
       .add-btn {
@@ -173,6 +213,12 @@
       .status-message.error {
         background: rgba(255, 69, 69, 0.3);
         color: #ff9999;
+        display: block;
+      }
+
+      .status-message.info {
+        background: rgba(0, 150, 255, 0.3);
+        color: #87ceeb;
         display: block;
       }
 
@@ -279,6 +325,10 @@
         display: none;
       }
 
+      .year-column {
+        display: none;
+      }
+
       .empty-message {
         text-align: center;
         color: #999;
@@ -291,12 +341,13 @@
         top: 10px;
         left: 10px;
         background: rgba(255, 107, 107, 0.3);
-        color: #ff6b6b;
-        padding: 5px 10px;
+        color: #ffb3b3;
+        padding: 8px 15px;
         border-radius: 20px;
         font-size: 12px;
+        font-weight: 600;
         display: none;
-        z-index: 100;
+        z-index: 50;
       }
 
       .offline-badge.show {
@@ -311,14 +362,14 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.5);
         animation: fadeIn 0.3s ease;
       }
 
       .modal.show {
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
       }
 
       @keyframes fadeIn {
@@ -333,12 +384,12 @@
       .modal-content {
         background: rgba(20, 30, 48, 0.95);
         backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         padding: 30px;
-        max-width: 500px;
         width: 90%;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 400px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         animation: slideUp 0.3s ease;
       }
 
@@ -353,7 +404,7 @@
         }
       }
 
-      .modal h2 {
+      .modal-content h2 {
         margin-bottom: 20px;
         text-align: center;
         color: #00d2ff;
@@ -363,46 +414,48 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        margin-bottom: 20px;
       }
 
-      .modal-form input {
+      .modal-form input,
+      .modal-form select {
         padding: 12px 15px;
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
+        border-radius: 50px;
         color: #fff;
         font-size: 14px;
         font-family: inherit;
         outline: none;
-        transition: all 0.3s ease;
       }
 
-      .modal-form input::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-      }
-
-      .modal-form input:focus {
+      .modal-form input:focus,
+      .modal-form select:focus {
         background: rgba(255, 255, 255, 0.2);
         border-color: #00d2ff;
         box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
       }
 
+      .modal-form option {
+        background: #1a1a1a;
+        color: #fff;
+      }
+
       .modal-buttons {
         display: flex;
         gap: 10px;
-        margin-top: 20px;
       }
 
-      .modal-buttons button {
+      .save-btn, .cancel-btn {
         flex: 1;
-        padding: 12px;
+        padding: 12px 20px;
         border: none;
-        border-radius: 10px;
-        font-size: 14px;
+        border-radius: 50px;
         font-weight: 600;
-        cursor: pointer;
         font-family: inherit;
-        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 14px;
       }
 
       .save-btn {
@@ -411,8 +464,8 @@
       }
 
       .save-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
       }
 
       .cancel-btn {
@@ -422,79 +475,48 @@
       }
 
       .cancel-btn:hover {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.2);
       }
 
-      @media (max-width: 600px) {
+      .loading {
+        text-align: center;
+        padding: 40px;
+        font-size: 16px;
+        color: #00d2ff;
+      }
+
+      .sync-badge {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(76, 175, 80, 0.3);
+        color: #90ee90;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: none;
+        z-index: 50;
+      }
+
+      .sync-badge.show {
+        display: block;
+      }
+
+      .sync-badge.syncing {
+        background: rgba(0, 150, 255, 0.3);
+        color: #87ceeb;
+      }
+
+      @media (max-width: 768px) {
         body {
           padding: 5px;
+          padding-top: max(5px, env(safe-area-inset-top));
         }
 
         .glass-container {
           padding: 20px 15px;
-          border-radius: 15px;
-          margin-bottom: 60px;
-        }
-
-        .form-group {
-          gap: 8px;
-        }
-
-        .form-group input {
-          font-size: 13px;
-          padding: 10px 12px;
-          min-width: 100px;
-        }
-
-        .add-btn {
-          padding: 10px 20px;
-          font-size: 13px;
-        }
-
-        table, thead, tbody, th, td, tr {
-          display: block;
-          width: 100%;
-        }
-
-        th {
-          display: none;
-        }
-
-        tbody tr {
-          margin-bottom: 12px;
-          border-radius: 8px;
-        }
-
-        td {
-          text-align: right;
-          position: relative;
-          padding-right: 40%;
-          padding-left: 12px;
-          border-radius: 0;
-          font-size: 14px;
-        }
-
-        td::before {
-          content: attr(data-label);
-          position: absolute;
-          right: 12px;
-          width: 35%;
-          color: #00d2ff;
-          font-weight: 600;
-          font-size: 13px;
-        }
-
-        td:first-child {
-          border-radius: 8px 8px 0 0;
-        }
-
-        td:last-child {
-          border-radius: 0 0 8px 8px;
-        }
-
-        .delete-btn, .edit-btn {
-          padding: 5px 10px;
-          font-size: 11px;
+          margin-bottom: 20px;
         }
 
         .header {
@@ -521,11 +543,29 @@
           width: 95%;
           padding: 20px;
         }
+
+        .filter-buttons {
+          gap: 8px;
+        }
+
+        .filter-btn {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+
+        table {
+          font-size: 13px;
+        }
+
+        th, td {
+          padding: 8px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="offline-badge" id="offlineBadge">بدون انترنت ✓</div>
+    <div class="sync-badge" id="syncBadge">جاري المزامنة...</div>
 
     <div class="header">
       <img src="eng.png" alt="مدرس" class="header-img" />
@@ -538,14 +578,28 @@
     <div class="glass-container">
       <div id="statusMessage" class="status-message"></div>
 
+      <!-- أزرار التصفية للطلاب -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="setFilter('all')">📚 الكل</button>
+        <button class="filter-btn" onclick="setFilter('أولى ثانوي')">1️⃣ أولى ثانوي</button>
+        <button class="filter-btn" onclick="setFilter('تانية بكالوريا')">2️⃣ تانية بكالوريا</button>
+      </div>
+
+      <!-- تحكم المدرس -->
       <div id="adminControls" class="form-group">
         <input type="text" id="lectureDay" placeholder="اليوم" />
         <input type="text" id="lectureName" placeholder="الصف" />
         <input type="time" id="lectureTime" />
         <input type="text" id="lectureLocation" placeholder="سنتر" />
+        <select id="lectureYear">
+          <option value="">اختر السنة</option>
+          <option value="أولى ثانوي">أولى ثانوي</option>
+          <option value="تانية بكالوريا">تانية بكالوريا</option>
+        </select>
         <button class="add-btn" onclick="addLecture()">+ إضافة</button>
       </div>
 
+      <!-- الجدول -->
       <table>
         <thead>
           <tr>
@@ -553,14 +607,17 @@
             <th>الصف</th>
             <th>الساعة</th>
             <th>سنتر</th>
+            <th class="year-column">السنة</th>
             <th class="admin-column">إجراء</th>
           </tr>
         </thead>
         <tbody id="tableBody">
+          <tr><td colspan="6" class="loading">جاري التحميل...</td></tr>
         </tbody>
       </table>
     </div>
 
+    <!-- نافذة التعديل -->
     <div id="editModal" class="modal">
       <div class="modal-content">
         <h2>تعديل المحاضرة</h2>
@@ -569,6 +626,10 @@
           <input type="text" id="editName" placeholder="الصف" />
           <input type="time" id="editTime" />
           <input type="text" id="editLocation" placeholder="سنتر" />
+          <select id="editYear">
+            <option value="أولى ثانوي">أولى ثانوي</option>
+            <option value="تانية بكالوريا">تانية بكالوريا</option>
+          </select>
         </div>
         <div class="modal-buttons">
           <button class="save-btn" onclick="saveEditLecture()">حفظ</button>
@@ -579,16 +640,33 @@
 
     <button class="secret-btn" onclick="adminLogin()">🔐</button>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
+
     <script>
+      // إعدادات Firebase - غيّر هذه البيانات بعد إنشاء مشروع Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBK-G2V1H_lqJ9zKmP0qR1xT2yU3vW4xZ5",
+        authDomain: "lectures-app-pwa.firebaseapp.com",
+        projectId: "lectures-app-pwa",
+        databaseURL: "https://lectures-app-pwa-default-rtdb.firebaseio.com",
+        storageBucket: "lectures-app-pwa.appspot.com",
+        messagingSenderId: "123456789012",
+        appId: "1:123456789012:web:abcdef1234567890"
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const database = firebase.database(app);
+      const lecturesRef = database.ref('lectures');
+
       let isAdmin = false;
       let editingId = null;
+      let currentFilter = 'all';
+      let allLectures = {};
 
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(err => {
-          console.log('Service Worker registration failed:', err);
-        });
-      }
-
+      // التحقق من الاتصال بالإنترنت
       window.addEventListener('online', updateOfflineStatus);
       window.addEventListener('offline', updateOfflineStatus);
 
@@ -608,6 +686,16 @@
         setTimeout(() => {
           statusDiv.style.display = "none";
         }, 3000);
+      }
+
+      function setSyncBadge(syncing = false) {
+        const badge = document.getElementById('syncBadge');
+        if (syncing) {
+          badge.classList.add('show', 'syncing');
+        } else {
+          badge.classList.remove('syncing');
+          setTimeout(() => badge.classList.remove('show'), 1000);
+        }
       }
 
       function convertTo12Hour(time24) {
@@ -641,28 +729,57 @@
         }
       }
 
-      function getLectures() {
-        const data = localStorage.getItem("lectures");
-        return data ? JSON.parse(data) : {};
-      }
-
-      function saveLectures(lectures) {
-        localStorage.setItem("lectures", JSON.stringify(lectures));
+      function setFilter(filter) {
+        currentFilter = filter;
+        
+        // تحديث الأزرار المفعلة
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        displayLectures();
       }
 
       function displayLectures() {
         const tableBody = document.getElementById("tableBody");
-        const lectures = getLectures();
+        
+        let filteredLectures = {};
+        
+        // تطبيق الفلتر
+        if (currentFilter !== 'all') {
+          for (let id in allLectures) {
+            if (allLectures[id].year === currentFilter) {
+              filteredLectures[id] = allLectures[id];
+            }
+          }
+        } else {
+          filteredLectures = allLectures;
+        }
+
         tableBody.innerHTML = "";
 
-        const lectureArray = Object.entries(lectures);
+        const lectureArray = Object.entries(filteredLectures);
 
         if (lectureArray.length === 0) {
-          tableBody.innerHTML = '<tr><td colspan="5" class="empty-message">لا توجد محاضرات 📋</td></tr>';
+          tableBody.innerHTML = '<tr><td colspan="6" class="empty-message">لا توجد محاضرات 📋</td></tr>';
           return;
         }
 
+        lectureArray.sort((a, b) => {
+          // ترتيب حسب اليوم ثم الساعة
+          const dayOrder = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'];
+          const dayA = dayOrder.indexOf(a[1].day);
+          const dayB = dayOrder.indexOf(b[1].day);
+          
+          if (dayA !== dayB) return dayA - dayB;
+          return (a[1].time || '').localeCompare(b[1].time || '');
+        });
+
         lectureArray.forEach(([id, data]) => {
+          let yearDisplay = data.year || "غير محدد";
+          let yearCell = isAdmin ? `<td class="year-column" style="display: table-cell; font-size: 12px;">${yearDisplay}</td>` : '<td class="year-column"></td>';
+          
           let actionHTML = "";
           if (isAdmin) {
             actionHTML = `<td data-label="إجراء" class="admin-column" style="display: table-cell;">
@@ -683,6 +800,7 @@
               <td data-label="الصف">${data.name || "-"}</td>
               <td data-label="الساعة">${timeDisplay}</td>
               <td data-label="سنتر">${data.location || "-"}</td>
+              ${yearCell}
               ${actionHTML}
             </tr>
           `;
@@ -695,43 +813,48 @@
         const day = document.getElementById("lectureDay").value.trim();
         const time = document.getElementById("lectureTime").value.trim();
         const location = document.getElementById("lectureLocation").value.trim();
+        const year = document.getElementById("lectureYear").value.trim();
 
-        if (!name || !day || !time || !location) {
+        if (!name || !day || !time || !location || !year) {
           showStatus("⚠️ الرجاء تعبئة جميع الحقول!", "error");
           return;
         }
 
+        setSyncBadge(true);
+        
         const id = Date.now().toString();
-        const lectures = getLectures();
-
-        lectures[id] = {
+        lecturesRef.child(id).set({
           name: name,
           day: day,
           time: time,
           location: location,
+          year: year,
           createdAt: new Date().toISOString()
-        };
-
-        saveLectures(lectures);
-        showStatus("✅ تم إضافة المحاضرة!", "success");
-
-        document.getElementById("lectureName").value = "";
-        document.getElementById("lectureDay").value = "";
-        document.getElementById("lectureTime").value = "";
-        document.getElementById("lectureLocation").value = "";
-
-        displayLectures();
+        }).then(() => {
+          showStatus("✅ تم إضافة المحاضرة!", "success");
+          
+          document.getElementById("lectureName").value = "";
+          document.getElementById("lectureDay").value = "";
+          document.getElementById("lectureTime").value = "";
+          document.getElementById("lectureLocation").value = "";
+          document.getElementById("lectureYear").value = "";
+          
+          setSyncBadge(false);
+        }).catch((error) => {
+          showStatus("❌ خطأ: " + error.message, "error");
+          setSyncBadge(false);
+        });
       }
 
       function openEditModal(id) {
         editingId = id;
-        const lectures = getLectures();
-        const lecture = lectures[id];
+        const lecture = allLectures[id];
 
         document.getElementById("editDay").value = lecture.day;
         document.getElementById("editName").value = lecture.name;
         document.getElementById("editTime").value = lecture.time;
         document.getElementById("editLocation").value = lecture.location;
+        document.getElementById("editYear").value = lecture.year || "أولى ثانوي";
 
         document.getElementById("editModal").classList.add("show");
       }
@@ -746,34 +869,42 @@
         const name = document.getElementById("editName").value.trim();
         const time = document.getElementById("editTime").value.trim();
         const location = document.getElementById("editLocation").value.trim();
+        const year = document.getElementById("editYear").value.trim();
 
-        if (!name || !day || !time || !location) {
+        if (!name || !day || !time || !location || !year) {
           showStatus("⚠️ الرجاء تعبئة جميع الحقول!", "error");
           return;
         }
 
-        const lectures = getLectures();
-        lectures[editingId] = {
+        setSyncBadge(true);
+
+        lecturesRef.child(editingId).update({
           name: name,
           day: day,
           time: time,
           location: location,
-          createdAt: lectures[editingId].createdAt
-        };
-
-        saveLectures(lectures);
-        showStatus("✅ تم تعديل المحاضرة!", "success");
-        closeEditModal();
-        displayLectures();
+          year: year
+        }).then(() => {
+          showStatus("✅ تم تعديل المحاضرة!", "success");
+          closeEditModal();
+          setSyncBadge(false);
+        }).catch((error) => {
+          showStatus("❌ خطأ: " + error.message, "error");
+          setSyncBadge(false);
+        });
       }
 
       function deleteLecture(id) {
-        if (confirm("هل أنت متأكد؟")) {
-          const lectures = getLectures();
-          delete lectures[id];
-          saveLectures(lectures);
-          showStatus("✅ تم الحذف!", "success");
-          displayLectures();
+        if (confirm("هل أنت متأكد من الحذف؟")) {
+          setSyncBadge(true);
+          
+          lecturesRef.child(id).remove().then(() => {
+            showStatus("✅ تم الحذف!", "success");
+            setSyncBadge(false);
+          }).catch((error) => {
+            showStatus("❌ خطأ: " + error.message, "error");
+            setSyncBadge(false);
+          });
         }
       }
 
@@ -783,8 +914,14 @@
         }
       });
 
-      window.addEventListener("load", () => {
+      // الاستماع لتحديثات قاعدة البيانات الفورية
+      lecturesRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        allLectures = data || {};
         displayLectures();
+      });
+
+      window.addEventListener("load", () => {
         updateOfflineStatus();
       });
     </script>
